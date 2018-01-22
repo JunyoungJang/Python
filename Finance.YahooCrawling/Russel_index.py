@@ -132,15 +132,17 @@ ticker = Russell(1000)
 
 print(len(ticker))
 i = 1
+#########################new code##############################
 for symbol in ticker:
-    if i < 0:
-    #if i < 228:
-        # download_quotes(symbol)
-        print(i, symbol)
-        i += 1
-        pass
-    else:
-        time.sleep(1)
-        download_quotes(symbol)
-        print(i, symbol)
-        i += 1
+    fail = 1
+    while fail > 0:
+        try:
+            download_quotes(symbol)
+            print(i, symbol)
+            fail = 0
+            i += 1
+        except KeyError:
+            time.sleep(0.1)
+            print('#Fail = %d' % fail)
+            fail += 1
+#########################new code##############################
