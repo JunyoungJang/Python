@@ -1,21 +1,3 @@
-# http://blog.bradlucas.com/posts/2017-06-03-yahoo-finance-quote-download-python/
-# https://github.com/bradlucas/get-yahoo-quotes-python/blob/master/get-yahoo-quotes.py
-# !/usr/bin/env python
-
-"""
-get-yahoo-quotes.py:  Script to download Yahoo historical quotes using the new cookie authenticated site.
- Usage: get-yahoo-quotes SYMBOL
- History
- 06-03-2017 : Created script
-"""
-
-__author__ = "Brad Luicas"
-__copyright__ = "Copyright 2017, Brad Lucas"
-__license__ = "MIT"
-__version__ = "1.0.0"
-__maintainer__ = "Brad Lucas"
-__email__ = "brad@beaconhill.com"
-__status__ = "Production"
 
 import re
 import sys
@@ -42,10 +24,6 @@ def find_crumb_store(lines):
             crumb = crumb.replace(u'\\u002F', '/')
             return crumb
     #########################new code##############################
-    #for l in lines: ------------ previous code
-    #    if re.findall(r'CrumbStore', l):
-    #        return l
-
 
 def get_cookie_value(r):
     return {'B': r.cookies['B']}
@@ -73,11 +51,6 @@ def get_cookie_crumb(symbol):
     return cookie, crumb
 
 
-#
-#
-# Here, you can change your saving directory
-#
-#
 def get_data(symbol, start_date, end_date, cookie, crumb):
     filename = '%s.csv' % (symbol)
     url = "https://query1.finance.yahoo.com/v7/finance/download/%s?period1=%s&period2=%s&interval=1d&events=history&crumb=%s" % (
@@ -89,7 +62,6 @@ def get_data(symbol, start_date, end_date, cookie, crumb):
 
 
 def get_now_epoch():
-    # @see https://www.linuxquestions.org/questions/programming-9/python-datetime-to-epoch-4175520007/#post5244109
     return int(time.time())
 
 
